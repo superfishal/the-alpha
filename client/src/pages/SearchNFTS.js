@@ -23,12 +23,16 @@ function SearchNFTS() {
       const startDate = new Date();
       const currentMonth = startDate.getMonth() + 1;
       data.forEach((Nft) => {
-        let launchDate = Nft.launchDatetime.split("-")[1];
-        if (parseInt(launchDate) === currentMonth) {
-          thisMonthsNfts.push(Nft);
-        } else {
+        if (typeof Nft.launchDatetime === "string") {
+          // console.log(Nft);
+          let launchDate = Nft.launchDatetime.split("-")[1];
+          if (parseInt(launchDate) === currentMonth) {
+            console.log(launchDate, currentMonth);
+            thisMonthsNfts.push(Nft);
+          }
         }
       });
+      console.log(thisMonthsNfts);
       setFetchedMints(thisMonthsNfts);
     };
     fetchMints();
