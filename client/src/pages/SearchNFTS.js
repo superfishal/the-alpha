@@ -17,16 +17,21 @@ function SearchNFTS() {
       );
       // Returns list of 200 NFTs as JSON
       const data = await result.json();
-      // console.log(data);
+      console.log(data);
       // Function to check current month against NFT's drop date month
       const thisMonthsNfts = [];
       const startDate = new Date();
       const currentMonth = startDate.getMonth() + 1;
+      console.log(currentMonth);
       data.forEach((Nft) => {
         if (typeof Nft.launchDatetime === "string") {
           // console.log(Nft);
           let launchDate = Nft.launchDatetime.split("-")[1];
-          if (parseInt(launchDate) === currentMonth) {
+          if (
+            parseInt(launchDate) === currentMonth ||
+            parseInt(launchDate) === currentMonth + 1 ||
+            parseInt(launchDate) === currentMonth - 1
+          ) {
             console.log(launchDate, currentMonth);
             thisMonthsNfts.push(Nft);
           }
